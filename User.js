@@ -5,3 +5,5 @@ const userSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model("User", userSchema)
+let usersTable = mongoose.model("User", userSchema)
+
