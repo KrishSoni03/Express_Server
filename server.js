@@ -20,18 +20,26 @@ try {
     console.error(error)
 }
 
-app.get("/", (req, res) => {
-    res.send("Hello World!")
-})
+// app.get("/", (req, res) => {
+//     res.send("Hello World!")
+// })
 
 app.post("/", async (req, res) => {
     const x = req.body
     const user_1 = new User({ name: x})
     await user_1.save()
     console.log(user_1)
+    res.status(200).send({
+        message: "Successful!",
+        data: user_1
+    })
 })
 
-
+app.get("/", (req, res) => {
+    User.find({}).then(function(users) {
+        res.send(users)
+    })
+})
 
 // run()
 // async function run() {
